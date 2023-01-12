@@ -72,6 +72,6 @@ class Palette:
             
 
 
-palette = Palette('nature.jpg', 1800, 'images', quality=1)
-palette.getImage()
-print(palette.getColors())
+# palette = Palette('nature.jpg', 1800, 'images', quality=1)
+# palette.getImage()
+# print(palette.getColors())

@@ -25,6 +25,13 @@
             <form method="POST" action="/" enctype="multipart/form-data">
                 {{ form.csrf_token }} {{form.file.label}} {{ form.file }} {{form.color_count.label}} {{ form.color_count}} {{form.submit}}
             </form>
+            {% if colors %}
+            <ul>
+                {% for color in colors %}
+                <li>{{color}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
             <!-- <div class="card" style="width: 50rem;">
                 <img src="" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -47,8 +54,8 @@
                     </form>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
-            </div>
-        </section>-->
+            </div>-->
+        </section>
     </div>
 </body>
 

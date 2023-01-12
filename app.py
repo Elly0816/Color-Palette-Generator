@@ -18,17 +18,22 @@ def home():
     if request.method == "GET":
         return render_template('home.html', form=form);
     elif request.method == "POST":
-        folder = 'images/'
-        number = request.form['color_count']
-        if request.files['file']:
-            f = request.files['file']
-            filename = secure_filename(f.filename)
-            print (number)
-            new_path = os.path.join(folder, filename)
-            print(new_path)
-            f.save(new_path)
-            return render_template('home.html', form=form)    
-    
+        if form.validate_on_submit():
+            folder = 'images/'
+            number = int(request.form['color_count'])
+            if request.files['file']:
+                f = request.files['file']
+                filename = secure_filename(f.filename)
+                print (number)
+                new_path = os.path.join(folder, filename)
+                print(new_path)
+                f.save(new_path)
+                palette = Palette(filename, 1200, folder, number)
+                palette.getImage()
+                colors = palette.getColors()
+                print(colors)
+                return render_template('home.html', form=form, colors=colors)    
+        
 
 
 @app.route("/features")
