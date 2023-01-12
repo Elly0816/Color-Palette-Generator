@@ -20,6 +20,8 @@ def home():
     elif request.method == "POST":
         if form.validate_on_submit():
             folder = 'images/'
+            if not os.path.exists(folder):
+                os.mkdir(folder)
             number = int(request.form['color_count'])
             if request.files['file']:
                 f = request.files['file']
@@ -32,7 +34,7 @@ def home():
                 palette.getImage()
                 colors = palette.getColors()
                 print(colors)
-                return render_template('home.html', form=form, colors=colors)    
+        return render_template('home.html', form=form, colors=colors)    
         
 
 
