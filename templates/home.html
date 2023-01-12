@@ -22,9 +22,8 @@
         </section>
 
         <section class="main container-fluid">
-            <form method="POST" action="/">
-                {{ form.csrf_token }} {{form.file.label}} {{ form.file }} {{form.color_count.label}} {{ form.color_count}}
-                <input type="submit" value="Go">
+            <form method="POST" action="/" enctype="multipart/form-data">
+                {{ form.csrf_token }} {{form.file.label}} {{ form.file }} {{form.color_count.label}} {{ form.color_count}} {{form.submit}}
             </form>
             <!-- <div class="card" style="width: 50rem;">
                 <img src="" class="card-img-top" alt="...">
