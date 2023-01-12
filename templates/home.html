@@ -17,8 +17,26 @@
 <body>
     {% include 'header.html' %}
     <div class="home">
-        <section class="made-with">
+        <section class="made-with container-fluid">
             <h3>Created by Eleazar</h3>
+        </section>
+
+        <section class="main container-fluid">
+            <div class="card" style="width: 50rem;">
+                <img src="" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Pick a file below</h5>
+                    <form class="row g-3">
+                        <div class="col-auto">
+                            <input type="file" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-3">Upload</button>
+                        </div>
+                    </form>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
         </section>
     </div>
 </body>

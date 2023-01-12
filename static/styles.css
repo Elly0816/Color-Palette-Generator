@@ -4,3 +4,17 @@
     justify-content: center;
     background-color: #BDC3C7;
 }
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #95A5A6;
+    height: 90vh;
+}
+
+
+/*img {
+    height: auto;
+    max-width: 50%;
+}*/

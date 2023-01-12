@@ -149,8 +149,6 @@ dmypy.json
 # pytype static type analyzer
 .pytype/
 
-# remove get-pip.py
-get-pip.py
 
 # Cython debug symbols
 cython_debug/
