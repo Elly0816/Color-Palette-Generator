@@ -6,15 +6,31 @@ import webcolors
 from colorthief import ColorThief
 
 class Palette:
-    def __init__(self, image: str, max_width: int, folder: str=None, count: int=10) -> None:
+    """summary:
+        image: image file name
+        max_width: new with for the resized image
+        folder: folder that contains the image
+        count: number of colors to get from the image
+        quality: quality settings, 1 is the highest quality, the bigger
+                        the number, the faster a color will be returned but
+                        the greater the likelihood that it will not be the
+                        visually most dominant color
+    """
+    def __init__(self, image: str, max_width: int, folder: str=None, count: int=10, quality: int=1) -> None:
         self.image = image
         self.count = count
         self.folder = folder
         self.max_width = max_width
         self.new_file_name = None
+        self.quality = quality
         self.image_colors: list[int] = []
         
     def getImage(self):
+        """summary:
+            This gets the image from the path defined in the class instance
+        Returns:
+            type: None
+        """
         try:
             f = open(os.path.join(self.folder, self.image), 'r')
         except FileNotFoundError: ##Expected error goes here
@@ -42,14 +58,20 @@ class Palette:
                         pass
                 
     def getColors(self):
+        """summary:
+            Gets the specified amount of colors from the image in located
+            at the path given in the image parameter
+        Returns:
+            type: None
+        """
         color_thief = ColorThief(os.path.join(self.folder, self.new_file_name))
-        color_palette = color_thief.get_palette(color_count=self.count, quality=10)
+        color_palette = color_thief.get_palette(color_count=self.count, quality=self.quality)
         for color in color_palette:
             self.image_colors.append(webcolors.rgb_to_hex(color));
         return self.image_colors
             
 
 
-palette = Palette('nature.jpg', 1800, 'images')
+palette = Palette('nature.jpg', 1800, 'images', quality=1)
 palette.getImage()
 print(palette.getColors())

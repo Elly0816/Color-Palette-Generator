@@ -22,7 +22,11 @@
         </section>
 
         <section class="main container-fluid">
-            <div class="card" style="width: 50rem;">
+            <form method="POST" action="/">
+                {{ form.csrf_token }} {{form.file.label}} {{ form.file }} {{form.color_count.label}} {{ form.color_count}}
+                <input type="submit" value="Go">
+            </form>
+            <!-- <div class="card" style="width: 50rem;">
                 <img src="" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Pick a file below</h5>
@@ -31,13 +35,21 @@
                             <input type="file" class="form-control" placeholder="Password">
                         </div>
                         <div class="col-auto">
+                            <label for="Count" class="visually-hidden">Number of Colors:</label>
+                            <input type="text" readonly class="form-control-plaintext" id="Count" value="Enter the number of colors you want">
+                          </div>
+                          <div class="col-auto">
+                            <label for="quality" class="visually-hidden">Quality of Result:</label>
+                            <input type="text" readonly class="form-control-plaintext" id="quality" value="email@example.com">
+                          </div>
+                        <div class="col-auto">
                             <button type="submit" class="btn btn-primary mb-3">Upload</button>
                         </div>
                     </form>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
             </div>
-        </section>
+        </section>-->
     </div>
 </body>
 
