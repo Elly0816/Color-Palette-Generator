@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
 
 <head>
@@ -15,8 +11,8 @@
 </head>
 
 <body>
-    {% include 'header.html' %}
     <div class="home">
+        {% include 'header.html' %}
         <section class="made-with container-fluid">
             <h3>Created by Eleazar</h3>
         </section>
@@ -24,30 +20,34 @@
         <section class="main container-fluid">
             {% if image %}
             <img src="{{image}}" alt=""> {% endif %}
-            <form method="POST" action="/" enctype="multipart/form-data">
-                {{ form.csrf_token }}
-                <div>
-                    {{form.file.label}} {{ form.file }}
-                </div>
-                <div>
-                    {{form.color_count.label}} {{ form.color_count}}
-                </div>
-                <div>
-                    {{form.submit}}
-                </div>
-            </form>
+            <section class="form">
+                <form method="POST" action="/" enctype="multipart/form-data">
+                    {{ form.csrf_token }}
+                    <div>
+                        {{form.file.label}} {{ form.file }}
+                    </div>
+                    <div>
+                        {{form.color_count.label}} {{ form.color_count}}
+                    </div>
+                    <div>
+                        {{form.submit}}
+                    </div>
+                </form>
+            </section>
             {% if colors %}
             <table>
                 <thead>
                     <tr>
+                        <th>Ranking</th>
                         <th>HEX Code</th>
                         <th>Color</th>
                     </tr>
                 </thead>
 
-                {% for color in colors %}
+                {% for index, color in colors %}
                 <tbody>
                     <tr>
+                        <td>{{index+1}}</td>
                         <td>{{color}}</td>
                         <td style="background-color: {{color}}"></td>
                     </tr>
@@ -55,29 +55,6 @@
                 {% endfor %}
             </table>
             {% endif %}
-            <!-- <div class="card" style="width: 50rem;">
-                <img src="" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Pick a file below</h5>
-                    <form class="row g-3">
-                        <div class="col-auto">
-                            <input type="file" class="form-control" placeholder="Password">
-                        </div>
-                        <div class="col-auto">
-                            <label for="Count" class="visually-hidden">Number of Colors:</label>
-                            <input type="text" readonly class="form-control-plaintext" id="Count" value="Enter the number of colors you want">
-                          </div>
-                          <div class="col-auto">
-                            <label for="quality" class="visually-hidden">Quality of Result:</label>
-                            <input type="text" readonly class="form-control-plaintext" id="quality" value="email@example.com">
-                          </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary mb-3">Upload</button>
-                        </div>
-                    </form>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>-->
         </section>
     </div>
 </body>

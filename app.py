@@ -18,7 +18,12 @@ app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 def home():
     form = UploadForm()
     if request.method == "GET":
-        return render_template('home.html', form=form);
+        image = None
+        for file in os.listdir(os.path.join(PEOPLE_FOLDER)):
+            if os.path.isfile(os.path.join(PEOPLE_FOLDER, file)):
+                image = os.path.join(PEOPLE_FOLDER, file)
+                break
+        return render_template('home.html', form=form, image=image);
     elif request.method == "POST":
         for file in os.listdir(PEOPLE_FOLDER):
             os.remove(os.path.join(PEOPLE_FOLDER, file))
@@ -43,7 +48,7 @@ def home():
                 file_to_send = os.path.join(PEOPLE_FOLDER, filename)
                 palette.delete_from_images()
                 print(colors)
-                return render_template('home.html', form=form, colors=colors, image=file_to_send)    
+                return render_template('home.html', form=form, colors=enumerate(colors), image=file_to_send)    
         
 
 
