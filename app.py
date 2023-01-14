@@ -3,6 +3,7 @@ from main import Palette
 from werkzeug.utils import secure_filename
 from forms import UploadForm
 import os
+import datetime
 
 
 
@@ -12,6 +13,9 @@ SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 PEOPLE_FOLDER = os.path.join('static', 'photo')
 app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
+
+current_year = datetime.datetime.now().year
+print(current_year)
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -23,7 +27,7 @@ def home():
             if os.path.isfile(os.path.join(PEOPLE_FOLDER, file)):
                 image = os.path.join(PEOPLE_FOLDER, file)
                 break
-        return render_template('home.html', form=form, image=image);
+        return render_template('home.html', form=form, image=image, year=current_year);
     elif request.method == "POST":
         for file in os.listdir(PEOPLE_FOLDER):
             os.remove(os.path.join(PEOPLE_FOLDER, file))
@@ -48,13 +52,13 @@ def home():
                 file_to_send = os.path.join(PEOPLE_FOLDER, filename)
                 palette.delete_from_images()
                 print(colors)
-                return render_template('home.html', form=form, colors=enumerate(colors), image=file_to_send)    
+                return render_template('home.html', form=form, colors=enumerate(colors), image=file_to_send, year=current_year)    
         
 
 
 @app.route("/features")
 def features():
-    return render_template('features.html')
+    return render_template('features.html', year=current_year)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000);

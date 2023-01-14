@@ -69,7 +69,25 @@ img {
 
 .form {
     background-color: white;
-    border-radius: 12%;
+    border-radius: 15%;
     width: 310px;
     margin: 2% auto;
+}
+
+.text {
+    margin: 1% auto;
+    text-align: justify;
+    font-weight: normal;
+    font-size: larger;
+}
+
+.footer {
+    text-align: center;
+    font-weight: bolder;
+    width: 100%;
+    /* padding: auto; */
+    bottom: 0;
+    /* margin-top: 20%; */
+    position: relative;
+    /* padding-top: 5%; */
 }
