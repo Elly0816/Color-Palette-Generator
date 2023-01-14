@@ -53,6 +53,7 @@ th,
 td {
     border-collapse: collapse;
     border: 1px solid;
+    font-weight: bold;
 }
 
 table {
@@ -68,7 +69,7 @@ img {
 
 .form {
     background-color: white;
-    border-radius: 10%;
-    width: 230px;
+    border-radius: 12%;
+    width: 310px;
     margin: 2% auto;
 }
