@@ -10,6 +10,8 @@ app = Flask(__name__)
 
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
+PEOPLE_FOLDER = os.path.join('static', 'photo')
+app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -18,6 +20,10 @@ def home():
     if request.method == "GET":
         return render_template('home.html', form=form);
     elif request.method == "POST":
+        for file in os.listdir(PEOPLE_FOLDER):
+            os.remove(os.path.join(PEOPLE_FOLDER, file))
+            # if os.path.isfile(file):
+            #     os.remove(file)
         if form.validate_on_submit():
             folder = 'images/'
             if not os.path.exists(folder):
@@ -31,10 +37,13 @@ def home():
                 print(new_path)
                 f.save(new_path)
                 palette = Palette(filename, 1200, folder, number)
-                palette.getImage()
-                colors = palette.getColors()
+                palette.get_image()
+                colors = palette.get_colors()
+                palette.save_to_static(folder, PEOPLE_FOLDER, 1080, filename)
+                file_to_send = os.path.join(PEOPLE_FOLDER, filename)
+                palette.delete_from_images()
                 print(colors)
-        return render_template('home.html', form=form, colors=colors)    
+                return render_template('home.html', form=form, colors=colors, image=file_to_send)    
         
 
 

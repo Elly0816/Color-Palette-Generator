@@ -22,15 +22,38 @@
         </section>
 
         <section class="main container-fluid">
+            {% if image %}
+            <img src="{{image}}" alt=""> {% endif %}
             <form method="POST" action="/" enctype="multipart/form-data">
-                {{ form.csrf_token }} {{form.file.label}} {{ form.file }} {{form.color_count.label}} {{ form.color_count}} {{form.submit}}
+                {{ form.csrf_token }}
+                <div>
+                    {{form.file.label}} {{ form.file }}
+                </div>
+                <div>
+                    {{form.color_count.label}} {{ form.color_count}}
+                </div>
+                <div>
+                    {{form.submit}}
+                </div>
             </form>
             {% if colors %}
-            <ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>HEX Code</th>
+                        <th>Color</th>
+                    </tr>
+                </thead>
+
                 {% for color in colors %}
-                <li>{{color}}</li>
+                <tbody>
+                    <tr>
+                        <td>{{color}}</td>
+                        <td style="background-color: {{color}}"></td>
+                    </tr>
+                </tbody>
                 {% endfor %}
-            </ul>
+            </table>
             {% endif %}
             <!-- <div class="card" style="width: 50rem;">
                 <img src="" class="card-img-top" alt="...">

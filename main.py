@@ -25,7 +25,7 @@ class Palette:
         self.quality = quality
         self.image_colors: list[int] = []
         
-    def getImage(self):
+    def get_image(self):
         """summary:
             This gets the image from the path defined in the class instance
         Returns:
@@ -57,7 +57,7 @@ class Palette:
                         ##print(self.new_file_name)
                         pass
                 
-    def getColors(self):
+    def get_colors(self):
         """summary:
             Gets the specified amount of colors from the image in located
             at the path given in the image parameter
@@ -70,6 +70,26 @@ class Palette:
             self.image_colors.append(webcolors.rgb_to_hex(color));
         return self.image_colors
             
+    def save_to_static(self, current_folder, new_folder, new_width, filename):
+        with open(os.path.join(current_folder, filename), 'r+b') as f:
+                with Image.open(f) as image:
+                    #Resize the image
+                    try:
+                        smaller_image = resizeimage.resize_width(image, new_width)
+                    except ImageSizeError:
+                        #self.max_width = image.size[0]
+                        smaller_image = image
+                        smaller_image.save(os.path.join(new_folder, filename), image.format)
+                    else:
+                        smaller_image.save(os.path.join(new_folder, filename), image.format)
+
+                        ##print("This is the new filename")
+                        ##print(self.new_file_name)
+
+    def delete_from_images(self):
+        for filename in os.listdir(self.folder):
+            if self.image in filename:
+                os.remove(os.path.join(self.folder, filename))
 
 
 # palette = Palette('nature.jpg', 1800, 'images', quality=1)

@@ -11,6 +11,11 @@
     justify-content: center;
     background-color: #95A5A6;
     height: 90vh;
+    flex-direction: column;
+}
+
+.main div {
+    margin: 5%;
 }
 
 
