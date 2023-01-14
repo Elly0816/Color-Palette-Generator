@@ -8,7 +8,7 @@ class UploadForm(FlaskForm):
                                           FileAllowed(['jpg', 'png'], 'Images only!')
                                           ])
     color_count = IntegerField('Number of colors: ', validators=[DataRequired()])
-    submit = SubmitField()
+    submit = SubmitField('Get Colors')
     
     
     
